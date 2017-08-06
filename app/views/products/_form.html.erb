@@ -21,10 +21,12 @@
     <%= f.text_field :price %>
   </div>
 
-  <div class="field">
-    <%= f.label :color %>
-    <%= f.text_field :color %>
-  </div>
+  <% if product.type.eql?(Pen.model_name.to_s)%>
+    <div class="field">
+      <%= f.label :color %>
+      <%= f.select :color, Pen::COLORS %>
+    </div>
+  <% end %>
 
   <div class="field">
     <%= f.label :status %>

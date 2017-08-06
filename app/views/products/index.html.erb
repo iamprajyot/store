@@ -21,8 +21,8 @@
       <tr>
         <td><%= product.name %></td>
         <td><%= product.price %></td>
-        <td><%= product.color %></td>
-        <td><%= product.status %></td>
+        <td><%= product.type.eql?(Pen.model_name.to_s) ? product.color : 'NA' %></td>
+        <td><%= product.status? ? 'Enabled' : 'Disabled' %></td>
         <td><%= product.inward_date %></td>
         <td><%= product.type %></td>
         <td><%= product.description %></td>
