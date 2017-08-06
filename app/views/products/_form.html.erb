@@ -35,7 +35,7 @@
 
   <div class="field">
     <%= f.label 'inward_date*' %>
-    <%= f.date_select :inward_date %>
+    <%= f.text_field :inward_date, class: 'datepicker' %>
   </div>
 
   <div class="field">
@@ -47,3 +47,4 @@
     <%= f.submit %>
   </div>
 <% end %>
+<script type="text/javascript">loadDatePicker();</script>

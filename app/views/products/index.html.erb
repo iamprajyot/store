@@ -3,7 +3,7 @@
 <h1>Products</h1>
 
 <% Product.descendants.each do |type| %>
-  Total price of <%= type %> is <%= Product.product_wise_price_sum(type) %><br>
+  Total price of <%= type %> is <%= Product.product_wise_price_sum(type).round(2) %><br>
 <% end %>
 
 <table>
