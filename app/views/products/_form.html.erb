@@ -12,19 +12,19 @@
   <% end %>
   <%= f.hidden_field :type, value: @type %>
   <div class="field">
-    <%= f.label :name %>
+    <%= f.label 'name*' %>
     <%= f.text_field :name %>
   </div>
 
   <div class="field">
-    <%= f.label :price %>
+    <%= f.label 'price*' %>
     <%= f.text_field :price %>
   </div>
 
   <% if product.type.eql?(Pen.model_name.to_s)%>
     <div class="field">
       <%= f.label :color %>
-      <%= f.select :color, Pen::COLORS %>
+      <%= f.select :color, Pen::COLORS, {prompt: '-- select color --'} %>
     </div>
   <% end %>
 
@@ -34,12 +34,12 @@
   </div>
 
   <div class="field">
-    <%= f.label :inward_date %>
+    <%= f.label 'inward_date*' %>
     <%= f.date_select :inward_date %>
   </div>
 
   <div class="field">
-    <%= f.label :description %>
+    <%= f.label 'description*' %>
     <%= f.text_area :description %>
   </div>
 

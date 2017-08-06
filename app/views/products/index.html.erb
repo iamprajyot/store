@@ -2,6 +2,10 @@
 
 <h1>Products</h1>
 
+<% Product.descendants.each do |type| %>
+  Total price of <%= type %> is <%= Product.product_wise_price_sum(type) %><br>
+<% end %>
+
 <table>
   <thead>
     <tr>
@@ -21,7 +25,7 @@
       <tr>
         <td><%= product.name %></td>
         <td><%= product.price %></td>
-        <td><%= product.type.eql?(Pen.model_name.to_s) ? product.color : 'NA' %></td>
+        <td><%= product.color.present? ? product.color : 'NA' %></td>
         <td><%= product.status? ? 'Enabled' : 'Disabled' %></td>
         <td><%= product.inward_date %></td>
         <td><%= product.type %></td>
