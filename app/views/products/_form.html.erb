@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-
+  <%= f.hidden_field :type, value: @type %>
   <div class="field">
     <%= f.label :name %>
     <%= f.text_field :name %>
@@ -34,11 +34,6 @@
   <div class="field">
     <%= f.label :inward_date %>
     <%= f.date_select :inward_date %>
-  </div>
-
-  <div class="field">
-    <%= f.label :type %>
-    <%= f.text_field :type %>
   </div>
 
   <div class="field">

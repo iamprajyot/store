@@ -14,7 +14,8 @@ class ProductsController < ApplicationController
 
   # GET /products/new
   def new
-    @product = Product.new
+    @product = params[:type].constantize.new
+    @type = @product.model_name.to_s
   end
 
   # GET /products/1/edit
@@ -28,7 +29,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        format.html { redirect_to products_path, notice: "#{@product.type} was successfully created." }
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new }
@@ -41,8 +42,8 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1.json
   def update
     respond_to do |format|
-      if @product.update(product_params)
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
+      if @product.update(product_update_params)
+        format.html { redirect_to products_path, notice: "#{@product.type} was successfully updated." }
         format.json { render :show, status: :ok, location: @product }
       else
         format.html { render :edit }
@@ -69,6 +70,18 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :price, :color, :status, :inward_date, :type, :description)
+      if params.has_key?('pen')
+        params.require(:pen).permit(:name, :price, :color, :status, :inward_date, :type, :description)
+      else
+        params.require(:notebook).permit(:name, :price, :status, :inward_date, :type, :description)
+      end
+    end
+
+    def product_update_params
+      if Pen.model_name.to_s.downcase.eql?(@product.type.downcase)
+        params.require(:pen).permit(:name, :price, :color, :status, :inward_date, :description)
+      else
+        params.require(:notebook).permit(:name, :price, :status, :inward_date, :description)
+      end
     end
 end
