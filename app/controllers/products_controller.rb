@@ -14,6 +14,7 @@ class ProductsController < ApplicationController
 
   # GET /products/new
   def new
+    # byebug
     @product = params[:type].constantize.new
     @type = @product.model_name.to_s
   end
